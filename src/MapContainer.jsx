@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {YMaps, Map, Placemark} from 'react-yandex-maps';
+import usePosition from "./hooks/usePosition";
 
 const MapContainer = () => {
+    const {latitude, longitude, error} = usePosition();
+
 
 
     return (<YMaps>
             <div style={{ margin: '0 auto', height: '800px', width: '1000px', border: '2px solid burlywood'}}>
+
                 <Map width='100%' height='100%' defaultState={{
                     center: [55.75, 37.57],
                     zoom: 10
@@ -14,10 +18,10 @@ const MapContainer = () => {
                     <Placemark
 
                         modules={['geoObject.addon.balloon', 'geoObject.addon.hint']}
-                        geometry={[55.75, 37.57]}
+                        geometry={[latitude, longitude]}
                         properties={{
-                            iconCaption: 'Описание висит здесь',
-                            iconContent: 7,
+                            iconCaption: 'Вы находитесь здесь',
+                            iconContent: "Я",
                             balloonContentHeader: '<a href = "#">Рога и копыта</a><br>' +
                                 '<span class="description">Сеть кинотеатров</span>',
 
@@ -26,7 +30,7 @@ const MapContainer = () => {
                                 '<b>Ближайшие сеансы</b> <br/> Сеансов нет.',
 
                             balloonContentFooter: 'Информация предоставлена:<br/>OOO "Рога и копыта"',
-                            hintContent: "Хинт, появляющийся при наведении"
+                            hintContent: "Хинт, Вы таки здеся!"
                         }}
                     />
 
