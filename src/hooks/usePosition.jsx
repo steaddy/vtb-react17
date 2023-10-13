@@ -7,7 +7,6 @@ const usePosition = () => {
 
     const onChange = ({coords: {latitude, longitude}}) => {
         setPosition({latitude, longitude});
-        console.log(position);
     };
 
     const onError = (error) => {

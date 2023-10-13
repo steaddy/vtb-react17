@@ -1,18 +1,19 @@
 import React, {useEffect, useState} from 'react';
-import {YMaps, Map, Placemark} from 'react-yandex-maps';
+import {YMaps, Map, Placemark, ZoomControl} from 'react-yandex-maps';
 import usePosition from "./hooks/usePosition";
 
 const MapContainer = () => {
-    const {latitude, longitude, error} = usePosition();
+    const {latitude = 55.75, longitude = 37.57, error} = usePosition();
 
 
-
-    return (<YMaps>
-            <div style={{ margin: '0 auto', height: '800px', width: '1000px', border: '2px solid burlywood'}}>
+    return (<YMaps query={{ load: 'package.full' }}>
+            <div style={{margin: '0 auto', height: '400px', width: '400px', border: '2px solid burlywood'}}>
 
                 <Map width='100%' height='100%' defaultState={{
-                    center: [55.75, 37.57],
-                    zoom: 10
+                    center: [latitude, longitude],
+                    zoom: 10,
+                    controls: ['zoomControl', 'searchControl']
+
                 }}>
 
                     <Placemark
@@ -33,10 +34,6 @@ const MapContainer = () => {
                             hintContent: "Хинт, Вы таки здеся!"
                         }}
                     />
-
-
-
-
 
 
                 </Map>
