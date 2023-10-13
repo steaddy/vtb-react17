@@ -1,12 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import {YMaps, Map, Placemark, ZoomControl} from 'react-yandex-maps';
 import usePosition from "./hooks/usePosition";
+import mark from "./img/mark.svg";
 
 const MapContainer = () => {
     const {latitude = 55.75, longitude = 37.57, error} = usePosition();
 
 
     return (<YMaps query={{ load: 'package.full' }}>
+
+
+
             <div style={{margin: '0 auto', height: '400px', width: '400px', border: '2px solid burlywood'}}>
 
                 <Map width='100%' height='100%' defaultState={{
@@ -21,8 +25,8 @@ const MapContainer = () => {
                         modules={['geoObject.addon.balloon', 'geoObject.addon.hint']}
                         geometry={[latitude, longitude]}
                         properties={{
-                            iconCaption: 'Вы находитесь здесь',
-                            iconContent: "Я",
+                            /*iconCaption: 'Вы находитесь здесь',
+                            iconContent: "Я",*/
                             balloonContentHeader: '<a href = "#">Рога и копыта</a><br>' +
                                 '<span class="description">Сеть кинотеатров</span>',
 
@@ -32,6 +36,12 @@ const MapContainer = () => {
 
                             balloonContentFooter: 'Информация предоставлена:<br/>OOO "Рога и копыта"',
                             hintContent: "Хинт, Вы таки здеся!"
+                        }}
+                        options={{
+                            iconLayout: 'default#image',
+                            iconImageSize: [50, 50],
+                            balloonOffset: [0, 0],
+                            iconImageHref: mark,
                         }}
                     />
 
